@@ -7,8 +7,9 @@ import (
 
 func main() {
 	data, err := tm1.NewFetcher().Fetch(usecase.FetchInput{
-		APIKey:              "2",
-		ShouldSimulateError: false,
+		APIKey:                      "2",
+		ShouldSimulateAuthError:     false,
+		ShouldSimulateRelatoryError: false,
 	})
 
 	if err != nil {

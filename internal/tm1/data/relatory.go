@@ -7,13 +7,13 @@ import (
 	"github.com/oklog/ulid/v2"
 )
 
-func ExternalRelatory() ([]byte, error) {
-	r := model.ExternalRelatory{
+func Relatory() ([]byte, error) {
+	r := model.Relatory{
 		Page: 0,
 	}
 
 	for range 10 {
-		r.Data = append(r.Data, model.ExternalRelatoryItem{
+		r.Data = append(r.Data, model.RelatoryItem{
 			ID:   ulid.Make().String(),
 			Hash: ulid.Make().String(),
 		})

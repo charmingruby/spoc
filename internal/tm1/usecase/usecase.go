@@ -3,8 +3,9 @@ package usecase
 import "github.com/charmingruby/spoc/internal/tm1/port"
 
 type FetchInput struct {
-	APIKey              string
-	ShouldSimulateError bool
+	APIKey                      string
+	ShouldSimulateAuthError     bool
+	ShouldSimulateRelatoryError bool
 }
 
 type Service interface {

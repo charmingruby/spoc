@@ -13,5 +13,5 @@ func (s *Salesforce) GenerateRelatory(token string, shouldSimulateError bool) ([
 		return nil, ErrInvalidToken
 	}
 
-	return data.ExternalRelatory()
+	return data.Relatory()
 }
