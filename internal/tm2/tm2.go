@@ -2,11 +2,11 @@ package tm2
 
 import (
 	"github.com/charmingruby/spoc/internal/shared/port"
-	"github.com/charmingruby/spoc/internal/tm1/adapter/salesforce"
-	"github.com/charmingruby/spoc/internal/tm1/usecase"
+	"github.com/charmingruby/spoc/internal/tm2/adapter/lambda"
+	"github.com/charmingruby/spoc/internal/tm2/usecase"
 )
 
 func NewFetcher() port.Fetcher[usecase.FetchInput] {
-	sf := salesforce.New()
-	return usecase.New(sf)
+	lambda := lambda.New()
+	return usecase.New(lambda)
 }
