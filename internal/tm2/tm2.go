@@ -6,7 +6,9 @@ import (
 	"github.com/charmingruby/spoc/internal/tm2/usecase"
 )
 
-func NewFetcher() port.Fetcher[usecase.FetchInput] {
+type Config = usecase.Config
+
+func NewFetcher(cfg Config) port.Fetcher {
 	lambda := lambda.New()
-	return usecase.New(lambda)
+	return usecase.New(lambda, cfg)
 }

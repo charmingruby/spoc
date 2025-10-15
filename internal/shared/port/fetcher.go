@@ -1,5 +1,5 @@
 package port
 
-type Fetcher[T any] interface {
-	Fetch(cfg T) ([]byte, error)
+type Fetcher interface {
+	Fetch() ([]byte, error)
 }

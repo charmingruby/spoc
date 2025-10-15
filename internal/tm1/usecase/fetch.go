@@ -1,10 +1,10 @@
 package usecase
 
-func (u *UseCase) Fetch(in FetchInput) ([]byte, error) {
-	token, err := u.crm.Authenticate(in.APIKey, in.ShouldSimulateAuthError)
+func (u *UseCase) Fetch() ([]byte, error) {
+	token, err := u.CRM.Authenticate(u.Config.APIKey, u.Config.ShouldSimulateAuthError)
 	if err != nil {
 		return nil, err
 	}
 
-	return u.crm.GenerateRelatory(token, in.ShouldSimulateRelatoryError)
+	return u.CRM.GenerateRelatory(token, u.Config.ShouldSimulateRelatoryError)
 }

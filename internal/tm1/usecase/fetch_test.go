@@ -11,61 +11,67 @@ import (
 
 func Test_UseCase_Fetch(t *testing.T) {
 	t.Run("should fetch data sucessfully", func(t *testing.T) {
-		m := newSuite()
+		s := newSuite()
 
 		apiKey := "apikey"
 		token := "token"
 
-		m.crm.On("Authenticate", apiKey, false).
+		s.crm.On("Authenticate", apiKey, false).
 			Return(token, nil)
 
-		m.crm.On("GenerateRelatory", token, false).
+		s.crm.On("GenerateRelatory", token, false).
 			Return(data.Relatory())
 
-		data, err := m.usecase.Fetch(usecase.FetchInput{
+		s.usecase.Config = usecase.Config{
 			APIKey:                      apiKey,
 			ShouldSimulateAuthError:     false,
 			ShouldSimulateRelatoryError: false,
-		})
+		}
+
+		data, err := s.usecase.Fetch()
 
 		require.NoError(t, err)
 		require.NotEmpty(t, data)
 	})
 
 	t.Run("should return error when fails to authenticate", func(t *testing.T) {
-		m := newSuite()
+		s := newSuite()
 
 		apiKey := "apikey"
 
-		m.crm.On("Authenticate", apiKey, true).
+		s.crm.On("Authenticate", apiKey, true).
 			Return("", errors.New("invalid api key"))
 
-		data, err := m.usecase.Fetch(usecase.FetchInput{
+		s.usecase.Config = usecase.Config{
 			APIKey:                  apiKey,
 			ShouldSimulateAuthError: true,
-		})
+		}
+
+		data, err := s.usecase.Fetch()
 
 		require.Error(t, err)
 		require.Empty(t, data)
 	})
 
 	t.Run("should return error when fails to generate relatory", func(t *testing.T) {
-		m := newSuite()
+		s := newSuite()
 
 		apiKey := "apikey"
 		token := "token"
 
-		m.crm.On("Authenticate", apiKey, false).
+		s.crm.On("Authenticate", apiKey, false).
 			Return(token, nil)
 
-		m.crm.On("GenerateRelatory", token, true).
+		s.crm.On("GenerateRelatory", token, true).
 			Return([]byte(nil), errors.New("invalid token"))
 
-		data, err := m.usecase.Fetch(usecase.FetchInput{
+		s.usecase.Config = usecase.Config{
 			APIKey:                      apiKey,
 			ShouldSimulateAuthError:     false,
 			ShouldSimulateRelatoryError: true,
-		})
+		}
+
+		data, err := s.usecase.Fetch()
 
 		require.Error(t, err)
 		require.Empty(t, data)

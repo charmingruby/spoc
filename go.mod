@@ -4,6 +4,7 @@ go 1.24.3
 
 require (
 	github.com/oklog/ulid/v2 v2.1.1
+	github.com/robfig/cron/v3 v3.0.1
 	github.com/stretchr/testify v1.11.1
 )
 

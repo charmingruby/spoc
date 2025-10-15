@@ -6,7 +6,9 @@ import (
 	"github.com/charmingruby/spoc/internal/tm1/usecase"
 )
 
-func NewFetcher() port.Fetcher[usecase.FetchInput] {
+type Config = usecase.Config
+
+func NewFetcher(cfg Config) port.Fetcher {
 	sf := salesforce.New()
-	return usecase.New(sf)
+	return usecase.New(sf, cfg)
 }

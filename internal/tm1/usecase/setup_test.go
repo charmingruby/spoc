@@ -7,7 +7,7 @@ import (
 
 type suite struct {
 	crm     *mocks.CRM
-	usecase usecase.Service
+	usecase *usecase.UseCase
 }
 
 func newSuite() *suite {
@@ -15,6 +15,6 @@ func newSuite() *suite {
 
 	return &suite{
 		crm:     crm,
-		usecase: usecase.New(crm),
+		usecase: usecase.New(crm, usecase.Config{}),
 	}
 }

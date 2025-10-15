@@ -1,5 +1,5 @@
 package usecase
 
-func (u *UseCase) Fetch(in FetchInput) ([]byte, error) {
-	return u.tm3.GenerateRelatory(in.ShouldSimulateRelatoryError)
+func (u *UseCase) Fetch() ([]byte, error) {
+	return u.TM3.GenerateRelatory(u.Config.ShouldSimulateRelatoryError)
 }

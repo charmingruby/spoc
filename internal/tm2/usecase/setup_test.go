@@ -7,7 +7,7 @@ import (
 
 type suite struct {
 	tm3     *mocks.TM3
-	usecase usecase.Service
+	usecase *usecase.UseCase
 }
 
 func newSuite() *suite {
@@ -15,6 +15,6 @@ func newSuite() *suite {
 
 	return &suite{
 		tm3:     tm3,
-		usecase: usecase.New(tm3),
+		usecase: usecase.New(tm3, usecase.Config{}),
 	}
 }
