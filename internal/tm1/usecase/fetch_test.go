@@ -16,10 +16,10 @@ func Test_UseCase_Fetch(t *testing.T) {
 		apiKey := "apikey"
 		token := "token"
 
-		s.crm.On("Authenticate", apiKey, false).
+		s.sf.On("Authenticate", apiKey, false).
 			Return(token, nil)
 
-		s.crm.On("GenerateRelatory", token, false).
+		s.sf.On("GenerateRelatory", token, false).
 			Return(data.Relatory())
 
 		s.usecase.Config = usecase.Config{
@@ -39,7 +39,7 @@ func Test_UseCase_Fetch(t *testing.T) {
 
 		apiKey := "apikey"
 
-		s.crm.On("Authenticate", apiKey, true).
+		s.sf.On("Authenticate", apiKey, true).
 			Return("", errors.New("invalid api key"))
 
 		s.usecase.Config = usecase.Config{
@@ -59,10 +59,10 @@ func Test_UseCase_Fetch(t *testing.T) {
 		apiKey := "apikey"
 		token := "token"
 
-		s.crm.On("Authenticate", apiKey, false).
+		s.sf.On("Authenticate", apiKey, false).
 			Return(token, nil)
 
-		s.crm.On("GenerateRelatory", token, true).
+		s.sf.On("GenerateRelatory", token, true).
 			Return([]byte(nil), errors.New("invalid token"))
 
 		s.usecase.Config = usecase.Config{

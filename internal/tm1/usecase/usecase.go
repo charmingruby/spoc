@@ -1,6 +1,6 @@
 package usecase
 
-import "github.com/charmingruby/spoc/internal/tm1/port"
+import "github.com/charmingruby/spoc/internal/tm1/integration"
 
 type Config struct {
 	APIKey                      string
@@ -13,16 +13,16 @@ type Service interface {
 }
 
 type UseCase struct {
-	CRM    port.CRM
-	Config Config
+	Salesforce integration.Salesforce
+	Config     Config
 }
 
 func New(
-	CRM port.CRM,
-	Config Config,
+	sf integration.Salesforce,
+	cfg Config,
 ) *UseCase {
 	return &UseCase{
-		CRM:    CRM,
-		Config: Config,
+		Salesforce: sf,
+		Config:     cfg,
 	}
 }

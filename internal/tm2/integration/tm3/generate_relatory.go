@@ -1,4 +1,4 @@
-package lambda
+package tm3
 
 import (
 	"errors"
@@ -6,7 +6,7 @@ import (
 	"github.com/charmingruby/spoc/internal/tm1/data"
 )
 
-func (l *Lambda) GenerateRelatory(shouldSimulateError bool) ([]byte, error) {
+func (tt *TM3) GenerateRelatory(shouldSimulateError bool) ([]byte, error) {
 	if shouldSimulateError {
 		return nil, errors.New("unknown error")
 	}

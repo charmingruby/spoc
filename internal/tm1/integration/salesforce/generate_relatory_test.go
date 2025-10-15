@@ -3,7 +3,7 @@ package salesforce_test
 import (
 	"testing"
 
-	"github.com/charmingruby/spoc/internal/tm1/adapter/salesforce"
+	"github.com/charmingruby/spoc/internal/tm1/integration/salesforce"
 	"github.com/stretchr/testify/require"
 )
 

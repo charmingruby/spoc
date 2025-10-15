@@ -1,15 +1,29 @@
 package usecase
 
-import "github.com/charmingruby/spoc/internal/shared/port"
+import (
+	"time"
+
+	"github.com/charmingruby/spoc/internal/shared/fetcher"
+	"github.com/charmingruby/spoc/internal/shared/storage"
+)
+
+type Config struct {
+	Timeout    time.Duration
+	MaxWorkers int
+}
 
 type Service interface {
-	CollectAndExport(fetchers []port.Fetcher) []error
+	CollectAndExport(fetchers []fetcher.Fetcher) []error
 }
 
 type UseCase struct {
-	// storage
+	Storage storage.Storage
+	Config  Config
 }
 
-func New() *UseCase {
-	return &UseCase{}
+func New(cfg Config, storage storage.Storage) *UseCase {
+	return &UseCase{
+		Config:  cfg,
+		Storage: storage,
+	}
 }
